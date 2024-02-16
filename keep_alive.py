@@ -1,14 +1,23 @@
-from flask import Flask
+import logging
+from flask import Flask, render_template
 from threading import Thread
+import datetime
 
-app = Flask('')
+app = Flask(__name__)
+start_time = datetime.datetime.now()
+
+# Tắt thông báo trên console
+
 
 @app.route('/')
 def home():
-    return "Server is running"
+    current_time = datetime.datetime.now()
+    uptime = current_time - start_time
+    hours = uptime.seconds // 3600
+    return render_template('index.html', uptime=hours)
 
 def run():
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host='0.0.0.0', port=8080)
 
 def keep_alive():
     t = Thread(target=run)
