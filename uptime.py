@@ -14,7 +14,7 @@ async def on_ready():
 
 @tasks.loop(seconds=60)
 async def url():
-  url = "https://mvcpxr-8080.csb.a"
+  url = "https://zmwsvh-8080.csb.app/"
   try:
     response = requests.get(url)
     if response.status_code == 200:
